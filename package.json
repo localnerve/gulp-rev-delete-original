@@ -1,11 +1,11 @@
 {
   "name": "@localnerve/gulp-rev-delete-original",
-  "version": "1.0.2",
+  "version": "2.0.0",
   "type": "module",
   "description": "Delete the original file rewritten by gulp-rev.",
   "scripts": {
-    "test": "mocha",
-    "test:cover": "c8 mocha"
+    "pretest": "node -e \"const fs=require('fs'); fs.rmSync('coverage', {recursive:true, force:true}); fs.mkdirSync('coverage')\"",
+    "test": "node --test --experimental-test-coverage --test-coverage-lines=95 --test-coverage-exclude='test/**' --test-reporter=spec --test-reporter-destination=stdout --test-reporter=lcov --test-reporter-destination=coverage/lcov.info"
   },
   "keywords": [
     "gulpplugin",
@@ -20,11 +20,8 @@
     "url": "git@github.com:localnerve/gulp-rev-delete-original.git"
   },
   "dependencies": {
-    "rimraf": "^6.1.2"
   },
   "devDependencies": {
-    "c8": "^10.1.3",
-    "mocha": "^11.7.5",
     "vinyl": "^3.0.1"
   },
   "license": "MIT"

@@ -13,17 +13,15 @@ Delete the original file rewritten by
 ## Usage
 
 ```js
-var gulp = require('gulp');
-var rev = require('gulp-rev');
-var revcss = require('gulp-rev-css-url');
-var revdel = require('gulp-rev-delete-original');
+import gulp from 'gulp';
+import rev from 'gulp-rev';
+import revdel from 'gulp-rev-delete-original';
 
 gulp.task('rev', function () {
-  return gulp.src('./app/**/*')
+  return gulp.src('./source/**/*')
     .pipe(rev())
-    .pipe(revcss())
     .pipe(revdel())
-    .pipe(gulp.dest('./build/'))
+    .pipe(gulp.dest('./destination/'))
   ;
 });
 ```
