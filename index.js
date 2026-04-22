@@ -5,7 +5,17 @@
  * Licensed under the MIT license.
  */
 import { Transform } from 'node:stream';
-import { rimraf } from 'rimraf';
+import fs from 'node:fs/promises';
+
+/**
+ * Remove a path.
+ * 
+ * @param {String} path - The file or directory to remove
+ * @returns {Promise} resolves on success, reject on failure
+ */
+function rimraf (path) {
+  return fs.rm(path, { recursive: true, force: true });
+}
 
 /**
  * Return a stream for deleting the original file.
