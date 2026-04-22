@@ -184,6 +184,34 @@ describe('gulp-rev-delete-original', () => {
     });
   });
 
+  it('should run default rimraf without fail', () => {
+    const file = new File({
+      cwd: '/',
+      base: '/test/',
+      path: '/dist/index.abcd.js',
+      contents: Buffer('')
+    });
+
+    file.revOrigPath = '/dist/index.js';
+
+    return new Promise((resolve, reject) => {
+      const stream = revDel();
+
+      stream.on('finish', () => {
+        // only way to verify is in coverage or debugger
+        // (this should keep coverage at 100%)
+        resolve();
+      });
+
+      stream.on('error', () => {
+        reject();
+      });
+
+      stream.write(file);
+      stream.end();
+    });
+  });
+
   it('should passthru non revved files', () => {
     let excludeCalled = false;
     const path = '/dist/index.abcd.js';
